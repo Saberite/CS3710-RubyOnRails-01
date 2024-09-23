@@ -13,7 +13,7 @@ class Student < ApplicationRecord
     validates :school_email, uniqueness:true
     
     #Documentation at active record validations on guides/rubyonrails.org
-    
+    #Format is used to make sure school_email has '@msudenver.edu'
     validates :school_email, format: { with: /\A[a-zA-Z]+@msudenver.deu\z/,
     message: "must be a vaild email" }
 

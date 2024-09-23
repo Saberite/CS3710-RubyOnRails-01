@@ -1,5 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+#Filling dummy data for testing fixtures
 one:
   first_name: FirstofName
   last_name: NameofLast
@@ -11,7 +12,7 @@ one:
 two:
   first_name: MyString
   last_name: MyString
-  school_email: MyString
+  school_email: MyString@msudenver.edu
   major: MyString
   minor: MyString
   graduation_date: 2024-09-21
