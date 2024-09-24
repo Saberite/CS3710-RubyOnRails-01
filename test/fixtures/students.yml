@@ -2,9 +2,9 @@
 
 #Filling dummy data for testing fixtures
 one:
-  first_name: FirstofName
-  last_name: NameofLast
-  school_email: Test@msudenver.edu
+  first_name: TestNumber
+  last_name: LastName
+  school_email: Test6@msudenver.edu
   major: CS
   minor: Math
   graduation_date: 2024-09-21
