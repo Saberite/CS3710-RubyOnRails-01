@@ -3,8 +3,51 @@ class StudentsController < ApplicationController
 
   # GET /students or /students.json
   def index
-    @students = Student.all
+    @search_params = params[:search] || {}
+    
+    #Intialize Students to be empty before search
+    @students = Student.none
+
+    #If search is present, hide all
+    if params[:search].present?
+      
+      #When search is made, show student index according to filter
+      @students = Student.all
+
+
+      #Major Search, tied to _search_form.html
+      if @search_params[:major].present?
+        @students = @students.where(major: @search_params[:major])
+      end
+
+      #Graduation Date Search on Controller for before gradution date
+      if @search_params[:graduation_date].present?
+          #Testing for before/after commands parsing graduation date
+        #date = Date.parse(@search_params[graduation_date])
+        #@students = @students.where('graduation_date <= ?', ...date)
+        if @search_params[:VALID_BEFOREANDAFTER] == 'Before'
+          @students = @students.where('graduation_date <= ?', @search_params[:graduation_date])
+        elsif @search_params[:VALID_BEFOREANDAFTER] == 'After'
+          @students = @students.where('graduation_date >= ?', @search_params[:graduation_date])
+        end
+      end
+    
+
+    end #End of hide all
+
+    # In the case that there is no search, send this message
+    #For testing purposes in Rspec Test #3
+    if @students.empty?
+      @students_message = "Please enter search criteria to find students" 
+    end
+  
+   
+
   end
+
+    
+
+  
 
   # GET /students/1 or /students/1.json
   def show

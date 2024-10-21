@@ -65,3 +65,13 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+#Rspec install:
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0.0'
+end
+
+#Faker Gem install
+group :development, :test do
+  gem 'faker'
+end

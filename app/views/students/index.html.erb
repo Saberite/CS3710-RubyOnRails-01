@@ -2,13 +2,66 @@
 
 <h1>Students</h1>
 
-<div id="students">
+<!--<div id="students">
   <% @students.each do |student| %>
     <%= render student %>
     <p>
       <%= link_to "Show this student", student %>
     </p>
   <% end %>
-</div>
+</div> -->
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Major</th>
+      <th scope="col">Graduation Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+
+  <!-- Iteration for rendering students with line 42 -->
+  <!-- Resource for table and button https://guides.rubyonrails.org/v7.1/layouts_and_rendering.html -->
+  <tbody>
+    <% @students.each_with_index do |student, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.major %></td>
+        <td><%= student.graduation_date %></td>
+        <td>
+          <!-- Button to lead to the "Show Student" form -->
+          <%= link_to 'Show', student_path(student), class: 'btn btn-primary' %>
+        </td>
+        <td>
+          <!-- Button to lead to the "Edit Student" form. Design choice for button for Teal -->
+          <%= link_to 'Edit', edit_student_path(student), class: 'btn btn-info' %>
+        </td>
+        <td>
+          <!-- Button to lead to the Delete Student. Button will be red to show it is a dangerous button -->
+          <%= link_to 'Delete', student_path(student), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+<%= render 'search_form', search_params: @search_params %>
+
+<!-- For case of no empty search and for Rspec test #3 -->
+<% if @students_message.present? %>
+  <p><%= @students_message %></p>
+<% end %>
 
 <%= link_to "New student", new_student_path %>
+<br>
+<!-- Added a Show Students button to index -->
+<!-- Instead, my workaround is to just show all majors since majors must be choosen through a selection list now :D -->
+<%= link_to 'Show All Students', students_path(search: { major: ["Computer Engineering BS", "Computer Information Systems BS", "Computer Science BS", "Cybersecurity Major", "Data Science and Machine Learning Major"] }), class: 'btn btn-primary' %>

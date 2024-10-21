@@ -1,0 +1,11 @@
+<h1>Students</h1>
+
+<!-- Custom route to show all Students -->
+<!-- Currently not working due to StudentController?? -->
+<div id="students">
+  <% @students.each do |student| %>
+    <%= render student %>
+    <p>
+      <%= link_to "Show this student", student %>
+    </p>
+  <% end %>

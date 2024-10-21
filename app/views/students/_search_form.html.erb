@@ -1,0 +1,26 @@
+<%= form_with(url:students_path, method: :get, local: true, class: "form-inline") do |form| %>
+    <div>
+        <%= form.label :major, "Select Major", class: "form-label" %>
+        <%= form.select :major, options_for_select(Student::VALID_MAJORS), {prompt: "Any Major"}, name: 'search[major]',
+    class: "form-control" %>
+    </div>
+
+    <!--- Documentation for using graduation date comes from 
+    #https://guides.rubyonrails.org/form_helpers.html#using-date-and-time-form-helpers -->
+    <div>
+        <%= form.label :graduation_date, "Select Graduation date" %>
+        <%= form.date_field :graduation_date, name: 'search[graduation_date]',
+    class: "form-control" %>
+    </div>
+
+    <div>
+        <%= form.label :before_after, "Choose Before or After" %>
+        <%= form.select :before_after, options_for_select(Student::VALID_BEFOREANDAFTER), name: 'search[before_after]',
+    class: "form-control" %>
+    </div>
+
+
+    <div>
+        <%= form.submit "Search", class: "btn bth-primary" %>
+    </div>
+<% end %>
