@@ -1,4 +1,11 @@
 class Student < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
+
+
     #Command if no image is uploaded for profile picture
     after_commit :add_default_profile_picture, on: %i[create update]
 
@@ -7,7 +14,7 @@ class Student < ApplicationRecord
     validates :first_name, presence:true
     validates :last_name, presence:true
     validates :graduation_date, presence:true
-    #Minor does not need to be filled
+   
 
     #Sprint #2 VALID_MAJORS
     #Purpose is only accept major listed below
@@ -22,16 +29,28 @@ class Student < ApplicationRecord
 
     
     #Uniqueness: true allows for condiontion to be realized
-    validates :school_email, presence: true 
-    validates :school_email, uniqueness:true
+        #Commented out to remove school_email for email
+    #validates :school_email, presence: true 
+    #validates :school_email, uniqueness:true
     
     #Documentation at active record validations on guides/rubyonrails.org
     #Format is used to make sure school_email has '@msudenver.edu'
-    validates :school_email, format: { with: /\A[a-zA-Z0-9]+@msudenver.edu\z/,
-    message: "must be a vaild MSU email" }
+        #Commented out to replace with school_email with email
+    #validates :school_email, format: { with: /\A[a-zA-Z0-9]+@msudenver.edu\z/,
+    #message: "must be a vaild MSU email" }
 
     #Active Storage Attachment Associations
     has_one_attached :image
+
+    #Validate email_format for Devise
+    validate :email_format
+    def email_format
+       unless email =~ /\A[\w+\-.]+@msudenver\.edu\z/i
+           errors.add(:email, "must be an @msudenver.edu email address")
+       end
+    end
+
+
 
     #Default Profile Picture set if not uploaded
     private

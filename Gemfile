@@ -75,3 +75,6 @@ end
 group :development, :test do
   gem 'faker'
 end
+
+#Devise(User authercation) bundle install: https://github.com/heartcombo/devise?tab=readme-ov-file
+gem "devise"

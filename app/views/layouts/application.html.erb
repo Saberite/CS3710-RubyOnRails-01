@@ -13,6 +13,12 @@
    <%= javascript_include_tag "application", type: "module", "data-turbo-track": "reload", defer: true %>
  </head>
 
+<!-- Flash message for Devise(User Authercation) -->
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+
+
 <!-- Banner at the top -->
    <div class="banner">
      <p>Welcome to the MSU Denver Testing Server Banner! Important information will be here!</p>
