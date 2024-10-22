@@ -13,6 +13,22 @@
    <%= javascript_include_tag "application", type: "module", "data-turbo-track": "reload", defer: true %>
  </head>
 
+<!-- Banner at the top -->
+   <div class="banner">
+     <p>Welcome to the MSU Denver Testing Server Banner! Important information will be here!</p>
+   </div>
+
+<!-- Banner Styling -->
+  <style>
+ .banner {
+    position: sticky; /* makes banner stay at the top of the page */
+    top: 0; /* banner stays at the top of the page */
+    z-index: 1000; /* Ensures the banner stays on top of everything on z plane */
+    background-color: #F6F068; /* Yellow color for banner */
+    text-align: center;
+ }
+  </style>
+
  <!-- Header Added with 'jumbotron' -->
  <!-- Header with background color green from # and text coloring with "color" -->
  <div class="jumbotron" style="background-color: #4CAF50; color: white;">
@@ -27,9 +43,9 @@
        Dropdown button
      </button>
      <ul class="dropdown-menu">
-       <li><a class="dropdown-item" href="#">Action</a></li>
-       <li><a class="dropdown-item" href="#">Another action</a></li>
-       <li><a class="dropdown-item" href="students#new">Something else here</a></li>
+       <li><a class="dropdown-item" href="https://www.msudenver.edu/">MSU Home Page</a></li>
+       <li><a class="dropdown-item" href="https://www.msudenver.edu/studenthub/">MSU Student Hub</a></li>
+       <li><a class="dropdown-item" href="students#new">New Student?</a></li>
      </ul>
    </div>
    <%= yield %>

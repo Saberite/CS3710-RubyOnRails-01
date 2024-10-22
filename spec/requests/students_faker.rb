@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 require 'faker' # Make sure the Faker gem is installed
-require 'open-uri' # To open the image URL
+#require 'open-uri' # To open the image URL, only needed if removing images
 
 
 #Clear database before running

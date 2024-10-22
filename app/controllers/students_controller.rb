@@ -20,16 +20,17 @@ class StudentsController < ApplicationController
         @students = @students.where(major: @search_params[:major])
       end
 
-      #Graduation Date Search on Controller for before gradution date
+      #Graduation Date Search on Controller for before/after gradution date
       if @search_params[:graduation_date].present?
-          #Testing for before/after commands parsing graduation date
-        #date = Date.parse(@search_params[graduation_date])
-        #@students = @students.where('graduation_date <= ?', ...date)
         if @search_params[:VALID_BEFOREANDAFTER] == 'Before'
           @students = @students.where('graduation_date <= ?', @search_params[:graduation_date])
         elsif @search_params[:VALID_BEFOREANDAFTER] == 'After'
           @students = @students.where('graduation_date >= ?', @search_params[:graduation_date])
         end
+
+        #Testing for before/after commands parsing graduation date
+        #date = Date.parse(@search_params[graduation_date])
+        #@students = @students.where('graduation_date <= ?', ...date)
       end
     
 

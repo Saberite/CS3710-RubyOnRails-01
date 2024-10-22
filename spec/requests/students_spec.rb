@@ -61,7 +61,7 @@ RSpec.describe "Students", type: :request do
     # To fit with my model, change "after" to "After"
     # Error with this test. I'm thinking due to the issues the logic in my model is set up with :VALID_BEFOREANDAFTER listed as commands
     # To fix maybe, instead of "data_type", find something else to ensure "After" works  
-    it "returns students graduating before the given date" do
+    it "returns students graduating after the given date" do
       get students_path, params: { search: { graduation_date: "2026-01-01", date_type: "After" } }
       expect(response.body).to include("Aaron")
       expect(response.body).to_not include("Jackie")
@@ -104,10 +104,11 @@ RSpec.describe "Students", type: :request do
 
       it "creates a new student that will fail due to bad data" do
         expect {
-          post students_path, params: { student: { first_name: "", last_name: "Gordon", school_email: "AaronGemail", major: "Computer Science BS", graduation_date: "2025-05-15" } }
+          post students_path, params: { student: { first_name: "", last_name: "Gordon", school_email: "AaronGemail", 
+          major: "Computer Science BS", graduation_date: "2025-05-15" } }
         }.to_not change(Student, :count)
 
-        expect(response).to have_http_status(:not_found)  # Expect 422 status code of bad data in email given model restrictions
+        expect(response).to have_http_status(:not_found)  # Expect 422 status code of bad data in school_email given model restrictions
       end
         
     end

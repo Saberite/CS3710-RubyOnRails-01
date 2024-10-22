@@ -11,7 +11,8 @@ class Student < ApplicationRecord
 
     #Sprint #2 VALID_MAJORS
     #Purpose is only accept major listed below
-    VALID_MAJORS = ["Computer Engineering BS", "Computer Information Systems BS", "Computer Science BS", "Cybersecurity Major", "Data Science and Machine Learning Major"]
+    VALID_MAJORS = ["Computer Engineering BS", "Computer Information Systems BS", 
+    "Computer Science BS", "Cybersecurity Major", "Data Science and Machine Learning Major"]
     
     #For Before and After
     VALID_BEFOREANDAFTER = ["Before", "After"]
